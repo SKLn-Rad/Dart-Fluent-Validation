@@ -1,0 +1,12 @@
+name: fluent_validation
+description: A dart based port of fluent validation for C#
+version: 0.0.1
+author: Ryan Dixon
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+
+dev_dependencies:
+  test: ^1.12.0
