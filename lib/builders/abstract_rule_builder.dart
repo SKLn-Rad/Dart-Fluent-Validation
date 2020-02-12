@@ -67,25 +67,25 @@ class AbstractRuleBuilder<E> {
 
   /// Checks if the object is a number and is less than another value
   AbstractRuleBuilder lessThan(int min) {
-    return must((dynamic dyn) => dyn is double && dyn < min,
+    return must((dynamic dyn) => dyn is num && dyn < min,
         "Number must be less than $min");
   }
 
   /// Checks if the object is a number and is less than or equal another value
   AbstractRuleBuilder lessThanOrEqual(int min) {
-    return must((dynamic dyn) => dyn is double && dyn <= min,
+    return must((dynamic dyn) => dyn is num && dyn <= min,
         "Number must be less than or equal to $min");
   }
 
   /// Checks if the object is a number and is greater than another number
   AbstractRuleBuilder greaterThan(int max) {
-    return must((dynamic dyn) => dyn is double && dyn > max,
+    return must((dynamic dyn) => dyn is num && dyn > max,
         "Number must be greater than $max");
   }
 
   /// Checks if the object is a number and is greater or equal to another number
   AbstractRuleBuilder greaterThanOrEqual(int max) {
-    return must((dynamic dyn) => dyn is double && dyn >= max,
+    return must((dynamic dyn) => dyn is num && dyn >= max,
         "Number must be greater than or equal to $max");
   }
 
