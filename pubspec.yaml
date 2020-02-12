@@ -1,7 +1,7 @@
 name: fluent_validation
 description: A dart based port of fluent validation for C#
 version: 0.0.1
-author: Ryan Dixon
+homepage: https://github.com/SKLn-Rad/Dart-Fluent-Validation
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
