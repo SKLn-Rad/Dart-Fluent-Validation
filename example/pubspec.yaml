@@ -1,0 +1,14 @@
+name: example
+description: Example of using fluent validation
+version: 0.0.1
+homepage: https://github.com/SKLn-Rad/Dart-Fluent-Validation
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+    fluent_validation:
+        path: ../
+
+dev_dependencies:
+  test: ^1.12.0

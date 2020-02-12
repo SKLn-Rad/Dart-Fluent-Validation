@@ -11,7 +11,7 @@ void main() {
 
 class TestNotNullValidator extends AbstractValidator<TestUser> {
   TestUserNullValidator() {
-    ruleFor((TestUser user) => user.age).isNotNull();
+    ruleFor((TestUser user) => user.age).notNull();
   }
 
   void runTest() {
@@ -21,8 +21,8 @@ class TestNotNullValidator extends AbstractValidator<TestUser> {
     final ValidationResult validationResult = validate(testUser);
     final ValidationResult validationResultTwo = validate(testUserTwo);
 
-    expect(validationResult.isError, isTrue);
-    expect(validationResultTwo.isError, isFalse);
+    expect(validationResult.hasError, isTrue);
+    expect(validationResultTwo.hasError, isFalse);
   }
 }
 
@@ -38,7 +38,7 @@ class TestUserNullValidator extends AbstractValidator<TestUser> {
     final ValidationResult validationResult = validate(testUser);
     final ValidationResult validationResultTwo = validate(testUserTwo);
 
-    expect(validationResult.isError, isFalse);
-    expect(validationResultTwo.isError, isTrue);
+    expect(validationResult.hasError, isFalse);
+    expect(validationResultTwo.hasError, isTrue);
   }
 }

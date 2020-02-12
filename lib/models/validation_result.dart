@@ -1,20 +1,27 @@
+/// Returned when validate is called, this holds potential errors with validated objects.
 class ValidationResult {
   ValidationResult({
     this.messages = const <String>[],
-    this.isError = false,
+    this.hasError = false,
   });
 
+  /// Creates a new validation result to represent an error.
   factory ValidationResult.fromError(String message) {
-    return ValidationResult(isError: true, messages: <String>[message]);
+    return ValidationResult(hasError: true, messages: <String>[message]);
   }
 
+  /// Merges a collection of validation results together.  
+  /// Using `ignorePassedMessages` will only keep the messages on failed tests.
   factory ValidationResult.merge(List<ValidationResult> results, bool ignorePassedMessages) {
     return ValidationResult(
-      isError: results.any((ValidationResult result) => result.isError),
-      messages: results.expand((ValidationResult result) => ignorePassedMessages && !result.isError ? <String>[] : result.messages).toList(),
+      hasError: results.any((ValidationResult result) => result.hasError),
+      messages: results.expand((ValidationResult result) => ignorePassedMessages && !result.hasError ? <String>[] : result.messages).toList(),
     );
   }
 
+  /// Messages which represent the error which can occur
   final List<String> messages;
-  final bool isError;
+
+  /// Whether the result of this action was an error
+  final bool hasError;
 }
