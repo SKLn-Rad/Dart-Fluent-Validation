@@ -10,12 +10,18 @@ class ValidationResult {
     return ValidationResult(hasError: true, messages: <String>[message]);
   }
 
-  /// Merges a collection of validation results together.  
+  /// Merges a collection of validation results together.
   /// Using `ignorePassedMessages` will only keep the messages on failed tests.
-  factory ValidationResult.merge(List<ValidationResult> results, bool ignorePassedMessages) {
+  factory ValidationResult.merge(
+      List<ValidationResult> results, bool ignorePassedMessages) {
     return ValidationResult(
       hasError: results.any((ValidationResult result) => result.hasError),
-      messages: results.expand((ValidationResult result) => ignorePassedMessages && !result.hasError ? <String>[] : result.messages).toList(),
+      messages: results
+          .expand((ValidationResult result) =>
+              ignorePassedMessages && !result.hasError
+                  ? <String>[]
+                  : result.messages)
+          .toList(),
     );
   }
 
