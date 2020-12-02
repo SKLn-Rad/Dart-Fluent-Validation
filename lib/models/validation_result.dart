@@ -3,6 +3,7 @@ class ValidationResult {
   ValidationResult({
     this.messages = const <String>[],
     this.hasError = false,
+    this.field,
   });
 
   /// Creates a new validation result to represent an error.
@@ -12,16 +13,10 @@ class ValidationResult {
 
   /// Merges a collection of validation results together.
   /// Using `ignorePassedMessages` will only keep the messages on failed tests.
-  factory ValidationResult.merge(
-      List<ValidationResult> results, bool ignorePassedMessages) {
+  factory ValidationResult.merge(List<ValidationResult> results, bool ignorePassedMessages) {
     return ValidationResult(
       hasError: results.any((ValidationResult result) => result.hasError),
-      messages: results
-          .expand((ValidationResult result) =>
-              ignorePassedMessages && !result.hasError
-                  ? <String>[]
-                  : result.messages)
-          .toList(),
+      messages: results.expand((ValidationResult result) => ignorePassedMessages && !result.hasError ? <String>[] : result.messages).toList(),
     );
   }
 
@@ -30,4 +25,13 @@ class ValidationResult {
 
   /// Whether the result of this action was an error
   final bool hasError;
+
+  /// Field Name
+  final String field;
+
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'field': field,
+        'messages': messages,
+        'hasError': hasError,
+      };
 }
