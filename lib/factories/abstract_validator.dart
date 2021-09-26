@@ -2,12 +2,11 @@ import 'package:fluent_validation/fluent_validation.dart';
 
 abstract class AbstractValidator<E> {
   /// The collection of rule builders
-  final List<AbstractRuleBuilder> ruleBuilders = <AbstractRuleBuilder>[];
+  final List<AbstractRuleBuilder<E>> ruleBuilders = <AbstractRuleBuilder<E>>[];
 
   /// Creates a new builder to represent a list of rules.
   AbstractRuleBuilder<E> ruleFor(dynamic Function(E e) func) {
-    final AbstractRuleBuilder<E> builder =
-        AbstractRuleBuilder<E>(expression: func);
+    final AbstractRuleBuilder<E> builder = AbstractRuleBuilder<E>(expression: func);
     ruleBuilders.add(builder);
     return builder;
   }
@@ -16,7 +15,7 @@ abstract class AbstractValidator<E> {
   ValidationResult validate(E object, {bool ignorePassedMessages = true}) {
     final List<ValidationResult> results = <ValidationResult>[];
     for (final AbstractRuleBuilder<E> ruleBuilder in ruleBuilders) {
-      final dynamic expressedValue = ruleBuilder.expression(object);
+      final dynamic expressedValue = ruleBuilder.expression?.call(object);
       for (final ValidationResult Function(dynamic) rule in ruleBuilder.rules) {
         final ValidationResult result = rule(expressedValue);
         results.add(result);

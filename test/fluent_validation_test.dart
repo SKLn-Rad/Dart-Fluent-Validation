@@ -12,13 +12,13 @@ void main() {
 
 class TestLessThanValidator extends AbstractValidator<TestUser> {
   TestLessThanValidator() {
-    ruleFor((TestUser user) => user.age).lessThan(20);
+    ruleFor((TestUser user) => user.age).lessThan(20, field: "age");
   }
 
   void runTest() {
     final TestUser testUser = TestUser(age: 18, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
-    
+
     final ValidationResult validationResult = validate(testUser);
     final ValidationResult validationResultTwo = validate(testUserTwo);
 
@@ -29,13 +29,13 @@ class TestLessThanValidator extends AbstractValidator<TestUser> {
 
 class TestNotNullValidator extends AbstractValidator<TestUser> {
   TestUserNullValidator() {
-    ruleFor((TestUser user) => user.age).notNull();
+    ruleFor((TestUser user) => user.age).notNull(field: "age");
   }
 
   void runTest() {
     final TestUser testUser = TestUser(age: null, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
-    
+
     final ValidationResult validationResult = validate(testUser);
     final ValidationResult validationResultTwo = validate(testUserTwo);
 
@@ -46,13 +46,13 @@ class TestNotNullValidator extends AbstractValidator<TestUser> {
 
 class TestUserNullValidator extends AbstractValidator<TestUser> {
   TestUserNullValidator() {
-    ruleFor((TestUser user) => user.age).isNull();
+    ruleFor((TestUser user) => user.age).isNull(field: "age");
   }
 
   void runTest() {
     final TestUser testUser = TestUser(age: null, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
-    
+
     final ValidationResult validationResult = validate(testUser);
     final ValidationResult validationResultTwo = validate(testUserTwo);
 

@@ -5,7 +5,7 @@ version: 1.0.1
 homepage: https://github.com/SKLn-Rad/Dart-Fluent-Validation
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.13.0 <3.0.0"
 
 dependencies:
   meta: ^1.2.4

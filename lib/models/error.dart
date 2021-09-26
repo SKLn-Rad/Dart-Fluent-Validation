@@ -1,7 +1,7 @@
 class Error {
-  String name;
-  String message;
-  String code;
+  String? name;
+  String? message;
+  String? code;
 
   Error({
     this.name,
