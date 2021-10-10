@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Error {
   String? name;
   String? message;
@@ -14,4 +16,14 @@ class Error {
         'messages': message,
         'code': code,
       };
+
+  factory Error.fromMap(Map<String, dynamic> map) {
+    return Error(
+      name: map['name'],
+      message: map['message'],
+      code: map['code'],
+    );
+  }
+
+  factory Error.fromJson(String source) => Error.fromMap(json.decode(source));
 }

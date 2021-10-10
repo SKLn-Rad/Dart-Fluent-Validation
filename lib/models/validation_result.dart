@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:fluent_validation/models/error.dart';
 
 /// Returned when validate is called, this holds potential errors with validated objects.
+
 class ValidationResult {
   ValidationResult({
     this.errors = const <Error>[],
@@ -31,4 +34,13 @@ class ValidationResult {
         'errors': errors,
         'hasError': hasError,
       };
+
+  factory ValidationResult.fromMap(Map<String, dynamic> map) {
+    return ValidationResult(
+      errors: List<Error>.from(map['errors']?.map((x) => Error.fromMap(x))),
+      hasError: map['hasError'],
+    );
+  }
+
+  factory ValidationResult.fromJson(String source) => ValidationResult.fromMap(json.decode(source));
 }
