@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-class Error {
+class ValidationError {
   String? name;
   String? message;
   String? code;
 
-  Error({
+  ValidationError({
     this.name,
     this.message,
     this.code,
@@ -17,13 +17,13 @@ class Error {
         'code': code,
       };
 
-  factory Error.fromMap(Map<String, dynamic> map) {
-    return Error(
+  factory ValidationError.fromMap(Map<String, dynamic> map) {
+    return ValidationError(
       name: map['name'],
       message: map['message'],
       code: map['code'],
     );
   }
 
-  factory Error.fromJson(String source) => Error.fromMap(json.decode(source));
+  factory ValidationError.fromJson(String source) => ValidationError.fromMap(json.decode(source));
 }

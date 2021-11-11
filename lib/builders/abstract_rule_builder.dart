@@ -115,7 +115,7 @@ class AbstractRuleBuilder<E> {
     rules.add(
       (dynamic param) => ValidationResult(
         hasError: !validator(param),
-        errors: <Error>[Error(name: key, message: message, code: code)],
+        errors: <ValidationError>[ValidationError(name: key, message: message, code: code)],
       ),
     );
     return this;

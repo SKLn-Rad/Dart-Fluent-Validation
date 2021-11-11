@@ -6,13 +6,13 @@ import 'package:fluent_validation/models/error.dart';
 
 class ValidationResult {
   ValidationResult({
-    this.errors = const <Error>[],
+    this.errors = const <ValidationError>[],
     this.hasError = false,
   });
 
   /// Creates a new validation result to represent an error.
   factory ValidationResult.fromError(String message) {
-    return ValidationResult(hasError: true, errors: <Error>[Error(message: message)]);
+    return ValidationResult(hasError: true, errors: <ValidationError>[ValidationError(message: message)]);
   }
 
   /// Merges a collection of validation results together.
@@ -20,17 +20,17 @@ class ValidationResult {
   factory ValidationResult.merge(List<ValidationResult> results, bool ignorePassedMessages) {
     return ValidationResult(
       hasError: results.any((ValidationResult result) => result.hasError),
-      errors: results.expand((ValidationResult result) => ignorePassedMessages && !result.hasError ? <Error>[] : result.errors).toList(),
+      errors: results.expand((ValidationResult result) => ignorePassedMessages && !result.hasError ? <ValidationError>[] : result.errors).toList(),
     );
   }
 
   /// Messages which represent the error which can occur
-  final List<Error> errors;
+  final List<ValidationError> errors;
 
   /// Whether the result of this action was an error
   final bool hasError;
 
-  List<Error> getErrorList(String key) {
+  List<ValidationError> getErrorList(String key) {
     return errors.where((element) => element.name == key).toList();
   }
 
@@ -41,7 +41,7 @@ class ValidationResult {
 
   factory ValidationResult.fromMap(Map<String, dynamic> map) {
     return ValidationResult(
-      errors: List<Error>.from(map['errors']?.map((x) => Error.fromMap(x))),
+      errors: List<ValidationError>.from(map['errors']?.map((x) => ValidationError.fromMap(x))),
       hasError: map['hasError'],
     );
   }
