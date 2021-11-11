@@ -12,7 +12,9 @@ void main() {
 
 class TestLessThanValidator extends AbstractValidator<TestUser> {
   TestLessThanValidator() {
-    ruleFor((TestUser user) => user.age).lessThan(20, field: "age");
+    ruleFor((TestUser user) => user.age, field: "age").lessThan(
+      20,
+    );
   }
 
   void runTest() {
@@ -29,7 +31,7 @@ class TestLessThanValidator extends AbstractValidator<TestUser> {
 
 class TestNotNullValidator extends AbstractValidator<TestUser> {
   TestUserNullValidator() {
-    ruleFor((TestUser user) => user.age).notNull(field: "age");
+    ruleFor((TestUser user) => user.age, field: "age").notNull();
   }
 
   void runTest() {
@@ -46,7 +48,7 @@ class TestNotNullValidator extends AbstractValidator<TestUser> {
 
 class TestUserNullValidator extends AbstractValidator<TestUser> {
   TestUserNullValidator() {
-    ruleFor((TestUser user) => user.age).isNull(field: "age");
+    ruleFor((TestUser user) => user.age, field: "age").isNull();
   }
 
   void runTest() {

@@ -5,8 +5,8 @@ abstract class AbstractValidator<E> {
   final List<AbstractRuleBuilder<E>> ruleBuilders = <AbstractRuleBuilder<E>>[];
 
   /// Creates a new builder to represent a list of rules.
-  AbstractRuleBuilder<E> ruleFor(dynamic Function(E e) func) {
-    final AbstractRuleBuilder<E> builder = AbstractRuleBuilder<E>(expression: func);
+  AbstractRuleBuilder<E> ruleFor(dynamic Function(E e) func, {required String field}) {
+    final AbstractRuleBuilder<E> builder = AbstractRuleBuilder<E>(expression: func, field: field);
     ruleBuilders.add(builder);
     return builder;
   }
