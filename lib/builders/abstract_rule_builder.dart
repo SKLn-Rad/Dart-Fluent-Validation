@@ -5,13 +5,13 @@ import 'package:fluent_validation/models/error.dart';
 class AbstractRuleBuilder<E> {
   AbstractRuleBuilder({
     this.expression,
-    required this.field,
+    required this.key,
   });
 
   /// The expression to get the result for the rule check
   final dynamic Function(E e)? expression;
 
-  final String field;
+  final String key;
 
   /// The list of rules to check against
   final List<ValidationResult Function(dynamic)> rules = <ValidationResult Function(dynamic)>[];
@@ -115,7 +115,7 @@ class AbstractRuleBuilder<E> {
     rules.add(
       (dynamic param) => ValidationResult(
         hasError: !validator(param),
-        errors: <Error>[Error(name: field, message: message, code: code)],
+        errors: <Error>[Error(name: key, message: message, code: code)],
       ),
     );
     return this;
