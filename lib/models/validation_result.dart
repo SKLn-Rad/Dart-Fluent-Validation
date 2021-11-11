@@ -30,6 +30,10 @@ class ValidationResult {
   /// Whether the result of this action was an error
   final bool hasError;
 
+  List<Error> getErrorList(String key) {
+    return errors.where((element) => element.name == key).toList();
+  }
+
   Map<String, dynamic> toJson() => <String, dynamic>{
         'errors': errors,
         'hasError': hasError,
