@@ -4,6 +4,6 @@ class TestUser {
     this.age,
   });
 
-  final String name;
-  final int age;
+  final String? name;
+  final int? age;
 }

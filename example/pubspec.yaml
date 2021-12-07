@@ -6,6 +6,8 @@ homepage: https://github.com/SKLn-Rad/Dart-Fluent-Validation
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
+publish_to: none
+
 dependencies:
     fluent_validation:
         path: ../
