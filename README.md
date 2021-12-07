@@ -6,14 +6,18 @@ The goal with this was to decouple the UI validation as seen in Flutters TextFie
 ```dart
 class UserValidator extends AbstractValidator<User> {
 	UserValidator() {
-		ruleFor((user) => user.age).isNotNull().greaterThanOrEqual(13);
-		ruleFor((user) => user.name).isNotEmpty();
+		ruleFor((user) => user.age, key: 'age').isNotNull().greaterThanOrEqual(13);
+		ruleFor((user) => user.name, key: 'name').isNotEmpty();
 	}
 }
 
 // Later on
 final UserValidator validator = UserValidator();
 ValidationResult result = validator.validate(user);
+
+result.errors.first.key == 'The key of the rule that errored (for example age)'
+result.errors.first.message == 'The supplied error message (Passed by you, or default)'
+result.errors.first.code == 'The error code'
 ```
 
 ## Features
