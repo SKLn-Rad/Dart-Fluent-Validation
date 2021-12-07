@@ -31,7 +31,7 @@ class ValidationResult {
   final bool hasError;
 
   List<ValidationError> getErrorList(String key) {
-    return errors.where((element) => element.name == key).toList();
+    return errors.where((element) => element.key == key).toList();
   }
 
   Map<String, dynamic> toJson() => <String, dynamic>{

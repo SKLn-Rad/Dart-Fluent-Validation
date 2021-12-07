@@ -11,7 +11,7 @@ void main() {
 
 class TestLessThanValidator extends AbstractValidator<TestUser> {
   void runTest() {
-    ruleFor((TestUser user) => user.age, key: "age").lessThan(20);
+    ruleFor((TestUser user) => user.age, key: 'age').lessThan(20);
 
     final TestUser testUser = TestUser(age: 18, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
@@ -20,13 +20,15 @@ class TestLessThanValidator extends AbstractValidator<TestUser> {
     final ValidationResult validationResultTwo = validate(testUserTwo);
 
     expect(validationResult.hasError, isFalse);
+
     expect(validationResultTwo.hasError, isTrue);
+    expect(validationResultTwo.errors.first.key, 'age');
   }
 }
 
 class TestNotNullValidator extends AbstractValidator<TestUser> {
   void runTest() {
-    ruleFor((TestUser user) => user.age, key: "age").notNull();
+    ruleFor((TestUser user) => user.age, key: 'age').notNull();
 
     final TestUser testUser = TestUser(age: null, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
@@ -35,13 +37,15 @@ class TestNotNullValidator extends AbstractValidator<TestUser> {
     final ValidationResult validationResultTwo = validate(testUserTwo);
 
     expect(validationResult.hasError, isTrue);
+    expect(validationResult.errors.first.key, 'age');
+
     expect(validationResultTwo.hasError, isFalse);
   }
 }
 
 class TestUserNullValidator extends AbstractValidator<TestUser> {
   void runTest() {
-    ruleFor((TestUser user) => user.age, key: "age").isNull();
+    ruleFor((TestUser user) => user.age, key: 'age').isNull();
 
     final TestUser testUser = TestUser(age: null, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
@@ -50,6 +54,8 @@ class TestUserNullValidator extends AbstractValidator<TestUser> {
     final ValidationResult validationResultTwo = validate(testUserTwo);
 
     expect(validationResult.hasError, isFalse);
+
     expect(validationResultTwo.hasError, isTrue);
+    expect(validationResultTwo.errors.first.key, 'age');
   }
 }
