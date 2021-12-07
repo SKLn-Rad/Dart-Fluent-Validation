@@ -1,7 +1,6 @@
-import 'package:fluent_validation/factories/abstract_validator.dart';
-import 'package:fluent_validation/models/validation_result.dart';
-import 'package:test/test.dart';
+import 'package:fluent_validation/fluent_validation.dart';
 
+import 'package:test/test.dart';
 import 'models/test_user.dart';
 
 void main() {
@@ -11,13 +10,9 @@ void main() {
 }
 
 class TestLessThanValidator extends AbstractValidator<TestUser> {
-  TestLessThanValidator() {
-    ruleFor((TestUser user) => user.age, key: "age").lessThan(
-      20,
-    );
-  }
-
   void runTest() {
+    ruleFor((TestUser user) => user.age, key: "age").lessThan(20);
+
     final TestUser testUser = TestUser(age: 18, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
 
@@ -30,11 +25,9 @@ class TestLessThanValidator extends AbstractValidator<TestUser> {
 }
 
 class TestNotNullValidator extends AbstractValidator<TestUser> {
-  TestUserNullValidator() {
-    ruleFor((TestUser user) => user.age, key: "age").notNull();
-  }
-
   void runTest() {
+    ruleFor((TestUser user) => user.age, key: "age").notNull();
+
     final TestUser testUser = TestUser(age: null, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
 
@@ -47,11 +40,9 @@ class TestNotNullValidator extends AbstractValidator<TestUser> {
 }
 
 class TestUserNullValidator extends AbstractValidator<TestUser> {
-  TestUserNullValidator() {
-    ruleFor((TestUser user) => user.age, key: "age").isNull();
-  }
-
   void runTest() {
+    ruleFor((TestUser user) => user.age, key: "age").isNull();
+
     final TestUser testUser = TestUser(age: null, name: 'Ryan');
     final TestUser testUserTwo = TestUser(age: 24, name: 'Ryan');
 

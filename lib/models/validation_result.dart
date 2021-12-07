@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:fluent_validation/models/error.dart';
+import 'package:fluent_validation/models/validation_error.dart';
 
 /// Returned when validate is called, this holds potential errors with validated objects.
 

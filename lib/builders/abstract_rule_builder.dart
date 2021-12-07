@@ -1,5 +1,5 @@
 import 'package:fluent_validation/fluent_validation.dart';
-import 'package:fluent_validation/models/error.dart';
+import 'package:fluent_validation/models/validation_error.dart';
 
 /// Holds a list of rules to match against
 class AbstractRuleBuilder<E> {
@@ -48,21 +48,17 @@ class AbstractRuleBuilder<E> {
 
   /// Checks if the object is a String and is inbetween two lengthes
   AbstractRuleBuilder length(int min, int max, {String? message}) {
-    return must(
-        (dynamic dyn) => dyn is String && dyn.length >= min && dyn.length <= max, message ?? "String must between $min and $max characters long",
-        code: "notLength");
+    return must((dynamic dyn) => dyn is String && dyn.length >= min && dyn.length <= max, message ?? "String must between $min and $max characters long", code: "notLength");
   }
 
   /// Checks if the object is a String and is at least a minimum length
   AbstractRuleBuilder minLength(int min, {String? message}) {
-    return must((dynamic dyn) => dyn is String && dyn.length >= min, message ?? "String must be more than or equal to $min characters long",
-        code: "notMinLength");
+    return must((dynamic dyn) => dyn is String && dyn.length >= min, message ?? "String must be more than or equal to $min characters long", code: "notMinLength");
   }
 
   /// Checks if the object is a String and is at below a maximum length
   AbstractRuleBuilder maxLength(int max, {String? message}) {
-    return must((dynamic dyn) => dyn is String && dyn.length <= max, message ?? "String must be less than or equal to $max characters long",
-        code: "notMaxLength");
+    return must((dynamic dyn) => dyn is String && dyn.length <= max, message ?? "String must be less than or equal to $max characters long", code: "notMaxLength");
   }
 
   /// Checks if the object is a number and is less than another value
@@ -87,27 +83,22 @@ class AbstractRuleBuilder<E> {
 
   /// Checks the object is a String and is a valid email address
   AbstractRuleBuilder isValidEmailAddress({String? message}) {
-    return must((dynamic dyn) => dyn is String && CommonRegex.emailValidator.hasMatch(dyn), message ?? "String must be a valid email address",
-        code: "notValidEmailAddress");
+    return must((dynamic dyn) => dyn is String && CommonRegex.emailValidator.hasMatch(dyn), message ?? "String must be a valid email address", code: "notValidEmailAddress");
   }
 
   /// Checks the object is a String and is a valid phone number
   AbstractRuleBuilder isValidPhoneNumber({String? message}) {
-    return must((dynamic dyn) => dyn is String && CommonRegex.numberValidator.hasMatch(dyn), message ?? "String must be a valid phone number",
-        code: "notValidPhoneNumber");
+    return must((dynamic dyn) => dyn is String && CommonRegex.numberValidator.hasMatch(dyn), message ?? "String must be a valid phone number", code: "notValidPhoneNumber");
   }
 
   /// Checks the object is a String and is a valid UK national insurance number
   AbstractRuleBuilder isValidNationalInsuranceNumber({String? message}) {
-    return must(
-        (dynamic dyn) => dyn is String && CommonRegex.ninValidator.hasMatch(dyn), message ?? "String must be a valid national insurance number",
-        code: "notValidNationalInsuranceNumber");
+    return must((dynamic dyn) => dyn is String && CommonRegex.ninValidator.hasMatch(dyn), message ?? "String must be a valid national insurance number", code: "notValidNationalInsuranceNumber");
   }
 
   /// Checks the object is a String and is a valid UK post code
   AbstractRuleBuilder isValidUKPostCode({String? message}) {
-    return must((dynamic dyn) => dyn is String && CommonRegex.postCodeValidator.hasMatch(dyn), message ?? "String must be a valid UK post code",
-        code: "notWalidUKPostCode");
+    return must((dynamic dyn) => dyn is String && CommonRegex.postCodeValidator.hasMatch(dyn), message ?? "String must be a valid UK post code", code: "notWalidUKPostCode");
   }
 
   /// Creates a new rule, passing in an expression and a message and returning a boolean
