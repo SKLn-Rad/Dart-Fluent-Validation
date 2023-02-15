@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 class ValidationError {
-  String? key;
-  String? message;
-  String? code;
+  String key;
+  String message;
+  String code;
 
   ValidationError({
-    this.key,
-    this.message,
-    this.code,
+    this.key = '',
+    this.message = '',
+    this.code = '',
   });
 
   Map<String, dynamic> toJson() => <String, dynamic>{

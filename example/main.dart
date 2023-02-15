@@ -13,7 +13,8 @@ void main() {
 
   final User userTwo = User("Ryan", "Sample Address", 11);
   final UserValidator userTwoValidator = UserValidator();
-  final ValidationResult validationTwoResult = userTwoValidator.validate(userTwo);
+  final ValidationResult validationTwoResult =
+      userTwoValidator.validate(userTwo);
 
   print('First validator results: ${validationResult.errors.length}');
   print('Second validator results: ${validationTwoResult.errors.length}');

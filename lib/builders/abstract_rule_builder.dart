@@ -1,5 +1,4 @@
 import 'package:fluent_validation/fluent_validation.dart';
-import 'package:fluent_validation/models/validation_error.dart';
 
 /// Holds a list of rules to match against
 class AbstractRuleBuilder<E> {
@@ -19,6 +18,11 @@ class AbstractRuleBuilder<E> {
   /// Checks if the object is null
   AbstractRuleBuilder isNull({String? message}) {
     return must((dynamic dyn) => dyn == null, message ?? "Value must be null", code: "notNull");
+  }
+
+  /// Checks if the object matches a regular expression
+  AbstractRuleBuilder isRegex(String pattern, {String? message}) {
+    return must((dynamic dyn) => dyn is String && RegExp(pattern).hasMatch(dyn), message ?? "String must match regular expression $pattern", code: "notRegex");
   }
 
   /// Checks if the object is not null
@@ -106,7 +110,7 @@ class AbstractRuleBuilder<E> {
     rules.add(
       (dynamic param) => ValidationResult(
         hasError: !validator(param),
-        errors: <ValidationError>[ValidationError(key: key, message: message, code: code)],
+        errors: <ValidationError>[ValidationError(key: key, message: message ?? '', code: code ?? '')],
       ),
     );
     return this;

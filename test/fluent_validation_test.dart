@@ -4,9 +4,12 @@ import 'package:test/test.dart';
 import 'models/test_user.dart';
 
 void main() {
-  test('isNull validator returns errors correctly', () => TestUserNullValidator().runTest());
-  test('isNotNull validator returns errors correctly', () => TestNotNullValidator().runTest());
-  test('lessThan validator returns errors correctly', () => TestLessThanValidator().runTest());
+  test('isNull validator returns errors correctly',
+      () => TestUserNullValidator().runTest());
+  test('isNotNull validator returns errors correctly',
+      () => TestNotNullValidator().runTest());
+  test('lessThan validator returns errors correctly',
+      () => TestLessThanValidator().runTest());
 }
 
 class TestLessThanValidator extends AbstractValidator<TestUser> {

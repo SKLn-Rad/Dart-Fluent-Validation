@@ -12,15 +12,23 @@ class ValidationResult {
 
   /// Creates a new validation result to represent an error.
   factory ValidationResult.fromError(String message) {
-    return ValidationResult(hasError: true, errors: <ValidationError>[ValidationError(message: message)]);
+    return ValidationResult(
+        hasError: true,
+        errors: <ValidationError>[ValidationError(message: message)]);
   }
 
   /// Merges a collection of validation results together.
   /// Using `ignorePassedMessages` will only keep the messages on failed tests.
-  factory ValidationResult.merge(List<ValidationResult> results, bool ignorePassedMessages) {
+  factory ValidationResult.merge(
+      List<ValidationResult> results, bool ignorePassedMessages) {
     return ValidationResult(
       hasError: results.any((ValidationResult result) => result.hasError),
-      errors: results.expand((ValidationResult result) => ignorePassedMessages && !result.hasError ? <ValidationError>[] : result.errors).toList(),
+      errors: results
+          .expand((ValidationResult result) =>
+              ignorePassedMessages && !result.hasError
+                  ? <ValidationError>[]
+                  : result.errors)
+          .toList(),
     );
   }
 
@@ -41,10 +49,12 @@ class ValidationResult {
 
   factory ValidationResult.fromMap(Map<String, dynamic> map) {
     return ValidationResult(
-      errors: List<ValidationError>.from(map['errors']?.map((x) => ValidationError.fromMap(x))),
+      errors: List<ValidationError>.from(
+          map['errors']?.map((x) => ValidationError.fromMap(x))),
       hasError: map['hasError'],
     );
   }
 
-  factory ValidationResult.fromJson(String source) => ValidationResult.fromMap(json.decode(source));
+  factory ValidationResult.fromJson(String source) =>
+      ValidationResult.fromMap(json.decode(source));
 }
