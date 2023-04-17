@@ -10,6 +10,28 @@ void main() {
       () => TestNotNullValidator().runTest());
   test('lessThan validator returns errors correctly',
       () => TestLessThanValidator().runTest());
+
+  test(
+      'lessThan validator returns errors correctly with message has name attribute from key',
+      () => TestLessThanValidatorMessageHasNameAttributeFromKey().runTest());
+}
+
+class TestLessThanValidatorMessageHasNameAttributeFromKey
+    extends AbstractValidator<TestUser> {
+  void runTest() {
+    ruleFor((TestUser user) => user.age, key: 'age', useKeyAsElementName: true)
+        .lessThan(15);
+
+    final TestUser testUser = TestUser(age: 18, name: 'Ryan');
+
+    final ValidationResult validationResult = validate(testUser);
+
+    expect(validationResult.hasError, isTrue);
+    expect(
+        validationResult.errors.first.message
+            .contains(validationResult.errors.first.key),
+        true);
+  }
 }
 
 class TestLessThanValidator extends AbstractValidator<TestUser> {

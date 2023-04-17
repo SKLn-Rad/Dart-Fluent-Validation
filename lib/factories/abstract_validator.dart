@@ -6,9 +6,9 @@ abstract class AbstractValidator<E> {
 
   /// Creates a new builder to represent a list of rules.
   AbstractRuleBuilder<E> ruleFor(dynamic Function(E e) func,
-      {required String key}) {
-    final AbstractRuleBuilder<E> builder =
-        AbstractRuleBuilder<E>(expression: func, key: key);
+      {required String key, bool useKeyAsElementName = false}) {
+    final AbstractRuleBuilder<E> builder = AbstractRuleBuilder<E>(
+        expression: func, key: key, useKeyAsElementName: useKeyAsElementName);
     ruleBuilders.add(builder);
     return builder;
   }

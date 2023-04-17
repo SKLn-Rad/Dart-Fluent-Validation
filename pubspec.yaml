@@ -2,7 +2,7 @@ name: fluent_validation
 description: A dart based port of fluent validation for C#. FluentValidation
   allows easy validation of objects without crazy amounts of boilerplate.
 
-version: 2.1.0
+version: 2.1.1
 homepage: https://github.com/SKLn-Rad/Dart-Fluent-Validation
 
 environment:

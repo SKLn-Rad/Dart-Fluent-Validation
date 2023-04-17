@@ -1,3 +1,6 @@
+## [2.1.1] - [Package Improvements]
+    * Can use key like name attribute when message display
+    
 ## [2.1.0] - [Breaking changes] - Nullability in validation error
     * Make key, message, and code in validation errors required (default is empty string)
 
